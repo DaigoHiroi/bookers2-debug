@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   def show
+    @comment = BookComment.new
     @newBook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
