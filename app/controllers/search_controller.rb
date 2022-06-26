@@ -1,6 +1,5 @@
 class SearchController < ApplicationController
-
-	  before_action :authenticate_user!
+	 before_action :authenticate_user!
 
 	def search
   	@model = params["search"]["model"]
@@ -28,11 +27,10 @@ class SearchController < ApplicationController
   	  elsif method == 'forward'
   	    Book.where('title LIKE ?', content+'%')
   	  elsif method == 'backward'
-  	    Book.where('title LIKE ?', '%'+content)
+  	    Book.where('title LIKE ?', '%' + content)
   	  else
-  	    Book.where('title LIKE ?', '%'+content+'%')
+  	    Book.where('title LIKE ?', '%' + content + '%')
   	  end
   	end
 	end
-
 end
