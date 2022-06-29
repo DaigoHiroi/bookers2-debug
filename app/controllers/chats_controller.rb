@@ -3,7 +3,6 @@ class ChatsController < ApplicationController
   def create
     chat = Chat.new(chat_params)
     room = ChatRoom.find(params[:chat_room_id])
-
     chat.user_id = current_user.id
     chat.chat_room_id = room.id
     chat.save
