@@ -5,6 +5,17 @@ class BooksController < ApplicationController
     @newBook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
+    if current_user.id != @book.user.id
+      foot_prints = FootPrint.find_by(book_id: @book.id, user_id: current_user.id)
+
+      pp foot_prints
+      if foot_prints.nil?
+        foot_prints = FootPrint.new()
+        foot_prints.user_id = current_user.id
+        foot_prints.book_id = @book.id
+        foot_prints.save
+      end
+    end
   end
 
   def index
