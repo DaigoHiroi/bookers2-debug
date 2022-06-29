@@ -5,7 +5,6 @@ class ChatRoomsController < ApplicationController
     @room = ChatRoom.find(params[:id])
     @chat = Chat.new()
     @chats = Chat.all.where(chat_room_id: params[:id])
-    pp @chats
   end
 
   def create
@@ -13,7 +12,6 @@ class ChatRoomsController < ApplicationController
     room = ChatRoom.find_by(followed_id: params[:user_id], follower_id: current_user.id)
     if room.nil?
       room = ChatRoom.find_by(followed_id: current_user.id, follower_id: params[:user_id])
-      pp room
       if room.nil?
         room = ChatRoom.new()
         room.followed_id = params[:user_id]
