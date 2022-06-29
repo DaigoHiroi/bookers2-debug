@@ -5,7 +5,7 @@
 <%= render 'chats/chats', chats: @chats %>
 <%= form_with model: [@user,@room,@chat], local:false do |f| %>
   <div class="form-group">
-    <%= f.text_field :text, class: 'form-control chat', id: 'chat'%>
+    <%= f.text_field :text, class: 'form-control', id: 'chat_text'%>
   </div>
     <%= f.submit %>
 <% end %>
