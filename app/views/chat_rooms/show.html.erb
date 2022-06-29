@@ -1,0 +1,12 @@
+<h1><%= @user.name %>さんとのチャット</h1>
+
+<%= @room.id %>
+
+<%= render 'chats/chats', chats: @chats %>
+<%= form_with model: [@user,@room,@chat], local:false do |f| %>
+  <div class="form-group">
+    <%= f.text_field :text, class: 'form-control chat', id: 'chat'%>
+  </div>
+    <%= f.submit %>
+<% end %>
+

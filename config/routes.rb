@@ -6,11 +6,15 @@ Rails.application.routes.draw do
   root :to => "homes#top"
   get "home/about" => "homes#about"
   get '/search', to: 'search#search'
+
   resources :books, only:[:new, :create, :index, :show, :destroy,:edit,:update] do
 	   resource :favorites, only: [:create, :destroy]
 	   resource :book_comments, only: [:create, :destroy]
   end
   resources :users do
+    resources :chat_rooms, only: [:create, :show] do
+      resource :chats, only: [:create]
+    end
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
